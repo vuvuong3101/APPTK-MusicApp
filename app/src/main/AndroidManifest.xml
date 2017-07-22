@@ -12,11 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
         <activity
-            android:theme="@style/MyTheme"
-            android:name=".views.fragments.activities.MainActivity">
-
-        </activity>
-        <activity
             android:name=".views.fragments.activities.Main2Activity"
             android:label="@string/title_activity_main2"
             android:theme="@style/MyTheme">

@@ -17,7 +17,7 @@ import java.util.List;
 import vu.musicapp.R;
 import vu.musicapp.views.fragments.fragments.FragmentDownLoad;
 import vu.musicapp.views.fragments.fragments.FragmentFav;
-import vu.musicapp.views.fragments.fragments.FragmentHome;
+import vu.musicapp.views.fragments.fragments.FragmentMusic;
 
 public class Main2Activity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -28,6 +28,14 @@ public class Main2Activity extends AppCompatActivity {
             R.drawable.ic_fav,
             R.drawable.ic_download
     };
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,7 @@ public class Main2Activity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentHome());
+        adapter.addFragment(new FragmentMusic());
         adapter.addFragment(new FragmentFav());
         adapter.addFragment(new FragmentDownLoad());
         viewPager.setAdapter(adapter);
