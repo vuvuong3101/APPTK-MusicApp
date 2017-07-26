@@ -5,71 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:fitsSystemWindows="true"
-        app:elevation="20dp">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            app:titleEnabled="false"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <ImageView
+            app:elevation="20dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                app:titleEnabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@raw/genre_x2_6"
-                android:id="@+id/iv_music_type"
-                app:layout_collapseMode="pin"
-                android:scaleType="centerCrop"/>
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@raw/genre_x2_6"
+                    android:id="@+id/iv_music_type"
+                    app:layout_collapseMode="pin"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:background="@drawable/gradient_thumbail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize" />
+                <ImageView
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize" />
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-        <LinearLayout
-            android:padding="16dp"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:layout_marginTop="180dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:textStyle="bold"
-                android:id="@+id/title_top_song"
-                android:layout_marginBottom="6dp"
-                android:text="Title"
-                android:textColor="@color/textColorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_top_song"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+                    <ImageView
+                        android:id="@+id/ic_back"
+                        android:padding="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_back_black_24dp"/>
+                </android.support.v7.widget.Toolbar>
 
-            <TextView
-                android:textStyle="italic"
-                android:id="@+id/title_arttist"
-                android:layout_marginBottom="6dp"
-                android:text="sub"
-                android:textColor="@color/textColorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <include
-                layout="@layout/top_song_content" />
-        </LinearLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/top_song_content"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
 
 </android.support.design.widget.CoordinatorLayout>

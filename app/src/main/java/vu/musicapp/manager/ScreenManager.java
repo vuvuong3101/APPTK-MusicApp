@@ -12,8 +12,8 @@ import vu.musicapp.models.MusicModel;
 
 public  class ScreenManager {
     public static MusicModel musicModel;
-    public  static void OpenFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID, MusicModel model) {
-        musicModel = model;
+    public  static void OpenFragment(FragmentManager fragmentManager, Fragment fragment, int layoutID) {
+//        musicModel = model;
         FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
         fragmentTransaction.add(layoutID, fragment);
         fragmentTransaction.addToBackStack("tag");

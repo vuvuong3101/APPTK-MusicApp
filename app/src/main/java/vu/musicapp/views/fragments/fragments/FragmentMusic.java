@@ -1,6 +1,7 @@
 package vu.musicapp.views.fragments.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import vu.musicapp.R;
 import vu.musicapp.adapters.MusicAdapter;
+import vu.musicapp.events.OnclickMusicType;
 import vu.musicapp.manager.ScreenManager;
 import vu.musicapp.models.MusicModel;
 import vu.musicapp.networks.GetMusicType;
@@ -56,10 +60,10 @@ public class FragmentMusic extends Fragment implements View.OnClickListener {
             public  final String TAG = FragmentMusic.class.toString();
 
             @Override
-            public void onResponse(Call<AllMusicTypeJSModel> call, Response<AllMusicTypeJSModel> response) {
+            public void onResponse(@NonNull Call<AllMusicTypeJSModel> call, @NonNull Response<AllMusicTypeJSModel> response) {
                 for (int i = 0 ; i< response.body().getSubgenres().size(); i++){
-                    String x = response.body().getSubgenres().get(i).getId().toString();
-                    String y = response.body().getSubgenres().get(i).getTranslation_key().toString();
+                    String x = response.body().getSubgenres().get(i).getId();
+                    String y = response.body().getSubgenres().get(i).getTranslation_key();
                     Log.d(TAG, "onResponse: "+  x + "  -  " + y);
 
 
@@ -105,8 +109,12 @@ public class FragmentMusic extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         MusicModel musicModel = (MusicModel) view.getTag();
-        Log.d(TAG, "onClick: " + musicModel);
+
+        // dung eventbus
+
+        EventBus.getDefault().postSticky(new OnclickMusicType(musicModel)); // send musicmodel sang topsong
+//        Log.d(TAG, "onClick: " + musicModel);
         TopSongFragment fragment = new TopSongFragment();
-        ScreenManager.OpenFragment(getActivity().getSupportFragmentManager(), fragment, R.id.container_main , musicModel);
+        ScreenManager.OpenFragment(getActivity().getSupportFragmentManager(), fragment, R.id.container_main);
     }
 }

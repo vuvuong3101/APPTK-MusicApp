@@ -18,4 +18,11 @@ public class AllSongsJSONModel {
     public void setFeed(FeedJSONModel feed) {
         this.feed = feed;
     }
+
+    @Override
+    public String toString() {
+        return "AllSongsJSONModel{" +
+                "feed=" + feed +
+                '}';
+    }
 }

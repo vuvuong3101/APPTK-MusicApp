@@ -45,4 +45,14 @@ public class SongInfoJSONModel {
     public void setArtist(ArtistJSONModel artist) {
         this.artist = artist;
     }
+
+
+    @Override
+    public String toString() {
+        return "SongInfoJSONModel{" +
+                "name=" + name +
+                ", image=" + image +
+                ", artist=" + artist +
+                '}';
+    }
 }

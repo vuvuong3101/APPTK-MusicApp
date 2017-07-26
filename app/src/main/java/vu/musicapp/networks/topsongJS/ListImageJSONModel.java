@@ -20,4 +20,11 @@ public class ListImageJSONModel {
     public void setListImages(List<ImageDetailJSONModel> listImages) {
         this.listImages = listImages;
     }
+
+    @Override
+    public String toString() {
+        return "ListImageJSONModel{" +
+                "listImages=" + listImages +
+                '}';
+    }
 }

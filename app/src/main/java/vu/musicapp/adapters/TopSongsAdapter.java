@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import vu.musicapp.R;
@@ -67,8 +69,10 @@ public class TopSongsAdapter extends RecyclerView.Adapter<TopSongsAdapter.TopSon
 
         public void setData(TopSongModel topSongModel) {
             if (topSongModel != null) {
+                view.setTag(topSongModel);
                 tvName.setText(topSongModel.getName());
                 tvArtist.setText(topSongModel.getArtist());
+                Picasso.with(context).load(topSongModel.getImage()).into(ivSong);
             }
         }
     }

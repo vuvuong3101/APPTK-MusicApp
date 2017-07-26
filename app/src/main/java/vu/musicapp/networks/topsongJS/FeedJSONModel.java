@@ -20,4 +20,11 @@ public class FeedJSONModel {
     public void setEntry(List<SongInfoJSONModel> entry) {
         this.entry = entry;
     }
+
+    @Override
+    public String toString() {
+        return "FeedJSONModel{" +
+                "entry=" + entry +
+                '}';
+    }
 }

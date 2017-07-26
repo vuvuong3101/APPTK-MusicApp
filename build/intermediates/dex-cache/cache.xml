@@ -3,6 +3,33 @@
 
     <item
         is-multidex="true"
+        jar="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/libs/guava-14.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4">
+        <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/2/guava-14.0.1_e785481b352ce757cfa9a9eae8a140d4c1a16fd0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/libs/commons-lang3-3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="905075e6c80f206bbe6cf1e809d2caa69f420c76">
+        <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-lang3-3.1_8cf3215b3c719ed035cf0cc4a388755b82b076e9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.android/build-cache/5b940fbba5ca31c6c1de07e8d0c17c19b38c4d5e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3165f9afdc8b48f10abcf6b5ab359633ab5e705a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/mac-vuongvu/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="true"
         optimize="true"
@@ -27,6 +54,15 @@
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a15f054123377735490ba69047aa8bcb8134a8d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_99e868bebe28e3945aa71e804ae48e46a64e94a5/classes.dex" />
     </item>
     <item
         is-multidex="true"

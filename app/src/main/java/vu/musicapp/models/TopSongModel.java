@@ -8,17 +8,13 @@ public class TopSongModel {
     private String name;
     private String image;
     private String artist;
-    private String nameSong;
-    private String artistSong;
-    private String imageSong;
+    private String linkSource;
 
-    public TopSongModel(String name, String image, String artist, String nameSong, String artistSong, String imageSong) {
+    public TopSongModel(String name, String image, String artist, String linkSource) {
         this.name = name;
         this.image = image;
         this.artist = artist;
-        this.nameSong = nameSong;
-        this.artistSong = artistSong;
-        this.imageSong = imageSong;
+        this.linkSource = linkSource;
     }
 
     public TopSongModel() {
@@ -49,27 +45,11 @@ public class TopSongModel {
         this.artist = artist;
     }
 
-    public String getNameSong() {
-        return nameSong;
+    public String getLinkSource() {
+        return linkSource;
     }
 
-    public void setNameSong(String nameSong) {
-        this.nameSong = nameSong;
-    }
-
-    public String getArtistSong() {
-        return artistSong;
-    }
-
-    public void setArtistSong(String artistSong) {
-        this.artistSong = artistSong;
-    }
-
-    public String getImageSong() {
-        return imageSong;
-    }
-
-    public void setImageSong(String imageSong) {
-        this.imageSong = imageSong;
+    public void setLinkSource(String linkSource) {
+        this.linkSource = linkSource;
     }
 }

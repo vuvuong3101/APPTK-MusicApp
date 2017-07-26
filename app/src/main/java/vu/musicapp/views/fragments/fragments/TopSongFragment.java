@@ -4,24 +4,33 @@ package vu.musicapp.views.fragments.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import vu.musicapp.R;
 import vu.musicapp.adapters.TopSongsAdapter;
-import vu.musicapp.manager.ScreenManager;
+import vu.musicapp.events.OnClickTopMusic;
+import vu.musicapp.events.OnclickMusicType;
+import vu.musicapp.manager.MusicManager;
 import vu.musicapp.models.MusicModel;
 import vu.musicapp.models.TopSongModel;
 import vu.musicapp.networks.GetTopSong;
@@ -32,17 +41,20 @@ import vu.musicapp.networks.topsongJS.SongInfoJSONModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopSongFragment extends Fragment {
-    @BindView(R.id.rv_top_song)
+public class TopSongFragment extends Fragment implements View.OnClickListener {
     RecyclerView rvTopSongs;
-    @BindView(R.id.iv_music_type)
     ImageView iv_thumbail;
-    @BindView(R.id.title_top_song)
+//    @BindView(R.id.)
     TextView tvTopSong;
-    TopSongsAdapter topSongsAdapter;
+    private  TopSongsAdapter topSongsAdapter;
+    private MusicModel musicModel;
+    private Toolbar toolbar;
 
     private List<TopSongModel> topSongModelList = new ArrayList<>();
     private  TopSongModel topSongModel;
+    private RelativeLayout mini_player;
+    private ImageView ivBack;
+
     public TopSongFragment() {
         // Required empty public constructor
     }
@@ -52,18 +64,27 @@ public class TopSongFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_song, container, false);
-
         setupUI(view);
         loadData(view);
+        mini_player = view.findViewById(R.id.mini_player);
+        toolbar = view.findViewById(R.id.toolbar_top_song);
+        ivBack = view.findViewById(R.id.ic_back);
+        Back();
         return view;
     }
 
-
+    public  void Back() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment= new FragmentMusic();
+            }
+        });
+    }
 
     private void loadData(View view){
         final GetTopSong getTopSongs = RetrofitFactory.getInstance().create(GetTopSong.class);
-        final MusicModel musicTypeModel = (MusicModel) view.getTag();
-        getTopSongs.getTopSongs(ScreenManager.musicModel.getId()).enqueue(new Callback<AllSongsJSONModel>() {
+        getTopSongs.getTopSongs(musicModel.getId()).enqueue(new Callback<AllSongsJSONModel>() {
             public  final String TAG = TopSongFragment.class.toString();
 
             @Override
@@ -73,16 +94,18 @@ public class TopSongFragment extends Fragment {
                 for(int i = 0; i < listSongInfo.size(); i++){
                     String x = listSongInfo.get(i).getName().getLabel();
                     String y = listSongInfo.get(i).getArtist().getLabel();
-                    String z = listSongInfo.get(i).getImage().toString();
+                    String z = listSongInfo.get(i).getImage().get(2).getLabel();
 
-
-                    Log.d(TAG, "onResponse: " + x + "---" +y + "---" + z);
+                            Log.d(TAG, "onResponse: " + x + "---" + y + "---" + z);
                     TopSongModel topSongModel = new TopSongModel();
-                    topSongModel.setNameSong(listSongInfo.get(i).getName().getLabel());
-                    topSongModel.setArtistSong(listSongInfo.get(i).getArtist().getLabel());
-                    Log.d(TAG, "onResponse: " + topSongModel.getNameSong());
+                    topSongModel.setName(listSongInfo.get(i).getName().getLabel());
+                    topSongModel.setArtist(listSongInfo.get(i).getArtist().getLabel());
+                    topSongModel.setImage(z);
                     topSongModelList.add(topSongModel);
                 }
+
+                topSongsAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -93,6 +116,33 @@ public class TopSongFragment extends Fragment {
     }
 
     private void setupUI(View view) {
+            /// dki vs event bus de nhan su kien onclick
+            EventBus.getDefault().register(this);
+            rvTopSongs = view.findViewById(R.id.rv_top_song);
+            iv_thumbail = view.findViewById(R.id.iv_music_type);
+            topSongsAdapter = new TopSongsAdapter(topSongModelList, getContext());
+            rvTopSongs.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvTopSongs.setAdapter(topSongsAdapter);
+            DividerItemDecoration diveidor = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            rvTopSongs.addItemDecoration(diveidor);
+            iv_thumbail.setImageResource(musicModel.getImageID());
 
+            /// nhan su kien
+            topSongsAdapter.setOnItemClick(this);
+
+    }
+    @Subscribe(sticky = true)
+    public  void onRecivedMusic (OnclickMusicType onclickMusicType){
+        musicModel = onclickMusicType.getMusicModel();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        TopSongModel topSongModel = (TopSongModel) view.getTag();
+        MusicManager.loadSearchSong(topSongModel, getContext());
+        //
+        Toast.makeText(getContext(), topSongModel.getName(), Toast.LENGTH_SHORT).show();
+        EventBus.getDefault().post(new OnClickTopMusic(topSongModel));
     }
 }

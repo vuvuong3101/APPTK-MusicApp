@@ -18,4 +18,11 @@ public class NameSongJSONModel {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    @Override
+    public String toString() {
+        return "NameSongJSONModel{" +
+                "label='" + label + '\'' +
+                '}';
+    }
 }

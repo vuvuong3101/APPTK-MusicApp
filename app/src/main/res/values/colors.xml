@@ -6,6 +6,9 @@
     <color name="windowBackground">#4e2664</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c14b07</color>
-    <color name="seconddary_text">#7df1ecec</color>
+    <color name="seconddary_text2">#7df1ecec</color>
+    <color name="seconddary_text1">#c8f1ecec</color>
+
+    <color name="mini_player">#1e0c2b</color>
 
 </resources>

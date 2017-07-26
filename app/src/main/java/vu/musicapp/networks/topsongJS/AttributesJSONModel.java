@@ -18,6 +18,13 @@ public class AttributesJSONModel {
     public void setHeight(String height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "AttributesJSONModel{" +
+                "height='" + height + '\'' +
+                '}';
+    }
 }
 
 
