@@ -16,7 +16,7 @@ public  class ScreenManager {
 //        musicModel = model;
         FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
         fragmentTransaction.add(layoutID, fragment);
-        fragmentTransaction.addToBackStack("tag");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

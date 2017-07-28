@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,12 +50,13 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
     private  TopSongsAdapter topSongsAdapter;
     private MusicModel musicModel;
     private Toolbar toolbar;
-
     private List<TopSongModel> topSongModelList = new ArrayList<>();
     private  TopSongModel topSongModel;
     private RelativeLayout mini_player;
     private ImageView ivBack;
-
+    private  SeekBar seekBar;
+    private ImageView buttonPlayPause;
+    private TextView tvTypeSong, tvCountSong;
     public TopSongFragment() {
         // Required empty public constructor
     }
@@ -66,9 +68,11 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_top_song, container, false);
         setupUI(view);
         loadData(view);
+        seekBar = getActivity().findViewById(R.id.seekBar_mini);
         mini_player = view.findViewById(R.id.mini_player);
         toolbar = view.findViewById(R.id.toolbar_top_song);
         ivBack = view.findViewById(R.id.ic_back);
+        buttonPlayPause = getActivity().findViewById(R.id.btn_miniPlay);
         Back();
         return view;
     }
@@ -77,7 +81,7 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment= new FragmentMusic();
+                getActivity().onBackPressed();
             }
         });
     }
@@ -118,6 +122,8 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
     private void setupUI(View view) {
             /// dki vs event bus de nhan su kien onclick
             EventBus.getDefault().register(this);
+            tvTypeSong = view.findViewById(R.id.type_music_title);
+            tvTypeSong.setText(musicModel.getKey());
             rvTopSongs = view.findViewById(R.id.rv_top_song);
             iv_thumbail = view.findViewById(R.id.iv_music_type);
             topSongsAdapter = new TopSongsAdapter(topSongModelList, getContext());
@@ -126,7 +132,6 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
             DividerItemDecoration diveidor = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
             rvTopSongs.addItemDecoration(diveidor);
             iv_thumbail.setImageResource(musicModel.getImageID());
-
             /// nhan su kien
             topSongsAdapter.setOnItemClick(this);
 
@@ -140,7 +145,7 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         TopSongModel topSongModel = (TopSongModel) view.getTag();
-        MusicManager.loadSearchSong(topSongModel, getContext());
+        MusicManager.loadSearchSong(topSongModel, getContext(), seekBar, buttonPlayPause);
         //
         Toast.makeText(getContext(), topSongModel.getName(), Toast.LENGTH_SHORT).show();
         EventBus.getDefault().post(new OnClickTopMusic(topSongModel));

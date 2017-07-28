@@ -36,6 +36,23 @@
                     android:background="@drawable/gradient"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize" />
+                <RelativeLayout
+                    android:padding="16dp"
+                    android:layout_gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/type_music_title"
+                        android:text="line1"
+                        android:textStyle="italic"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="16sp"
+                        android:layout_gravity="bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_top_song"
@@ -44,7 +61,9 @@
                     app:layout_collapseMode="pin">
                     <ImageView
                         android:id="@+id/ic_back"
-                        android:padding="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingRight="16dp"
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -55,14 +74,5 @@
 
         </android.support.design.widget.AppBarLayout>
         <include layout="@layout/top_song_content"/>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@android:drawable/ic_media_play" />
-
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package vu.musicapp.views.fragments.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -25,10 +31,13 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import vu.musicapp.R;
 import vu.musicapp.events.OnClickTopMusic;
+import vu.musicapp.manager.MusicManager;
+import vu.musicapp.manager.ScreenManager;
 import vu.musicapp.models.TopSongModel;
 import vu.musicapp.views.fragments.fragments.FragmentDownLoad;
 import vu.musicapp.views.fragments.fragments.FragmentFav;
 import vu.musicapp.views.fragments.fragments.FragmentMusic;
+import vu.musicapp.views.fragments.fragments.FullPlayerFM;
 
 public class Main2Activity extends AppCompatActivity {
     private static final String TAG = Main2Activity.class.toString();
@@ -45,6 +54,13 @@ public class Main2Activity extends AppCompatActivity {
     private RelativeLayout mini_player;
     private CircleImageView ivMinipalyer;
     private TextView tvNameSong, tvArtist;
+    private SeekBar seekBar;
+    private ImageView ivButtonPlay;
+    private RelativeLayout miniplayerLayout, mainContent;
+    private FloatingActionButton fab;
+    private FullPlayerFM fullPlayerFM;
+
+
 
     @Override
     public void onBackPressed() {
@@ -58,7 +74,32 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-//
+
+        //
+        miniplayerLayout = (RelativeLayout) findViewById(R.id.mini_player);
+        miniplayerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FullPlayerFM fullPlayerFM = new FullPlayerFM();
+                ScreenManager.OpenFragment(getSupportFragmentManager(), fullPlayerFM, R.id.main);
+                mini_player.setVisibility(View.INVISIBLE);
+                EventBus.getDefault().postSticky(new OnClickTopMusic(topSongModel));
+
+            }
+        });
+        //
+        seekBar = (SeekBar) findViewById(R.id.seekBar_mini);
+        seekBar.setPadding(0,0,0,0);
+        //
+        ivButtonPlay = (ImageView) findViewById(R.id.btn_miniPlay);
+        ivButtonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MusicManager.playPause();
+            }
+        });
+
+         //
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -72,7 +113,8 @@ public class Main2Activity extends AppCompatActivity {
         FindViewID();
         setupViewPager(mViewPager);
         setupTabIcons();
-        setupMinuPlayer();
+
+        Animation();
     }
 
     public void FindViewID() {
@@ -81,6 +123,20 @@ public class Main2Activity extends AppCompatActivity {
         tvArtist = (TextView) findViewById(R.id.artist_mini);
     }
 
+    public TopSongModel getTopSongModel() {
+        return topSongModel;
+    }
+
+    public  void Animation() {
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+
+        rotateAnimation.setInterpolator(new LinearInterpolator());
+        rotateAnimation.setDuration(15000);
+        rotateAnimation.setRepeatCount(Animation.INFINITE);
+        ivMinipalyer.startAnimation(rotateAnimation);
+    }
 
     @Subscribe
     public  void onRecivedMusic (OnClickTopMusic onClickTopMusic){
@@ -105,11 +161,6 @@ public class Main2Activity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
-
-    public void setupMinuPlayer() {
-
-    }
-
 
 
 

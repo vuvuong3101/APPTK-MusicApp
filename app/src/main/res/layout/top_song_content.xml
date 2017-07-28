@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:showIn="@layout/fragment_top_song">
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_top_song"
         android:background="@color/colorPrimary"
