@@ -1,7 +1,6 @@
 package vu.musicapp.views.fragments.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -57,11 +56,8 @@ public class Main2Activity extends AppCompatActivity {
     private SeekBar seekBar;
     private ImageView ivButtonPlay;
     private RelativeLayout miniplayerLayout, mainContent;
-    private FloatingActionButton fab;
-    private FullPlayerFM fullPlayerFM;
 
-
-
+    
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
@@ -82,8 +78,8 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 FullPlayerFM fullPlayerFM = new FullPlayerFM();
                 ScreenManager.OpenFragment(getSupportFragmentManager(), fullPlayerFM, R.id.main);
-                mini_player.setVisibility(View.INVISIBLE);
-                EventBus.getDefault().postSticky(new OnClickTopMusic(topSongModel));
+                miniplayerLayout.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -109,7 +105,7 @@ public class Main2Activity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         //
         EventBus.getDefault().register(this);
-        mini_player = (RelativeLayout) findViewById(R.id.mini_player);
+//        mini_player = (RelativeLayout) findViewById(R.id.mini_player);
         FindViewID();
         setupViewPager(mViewPager);
         setupTabIcons();
@@ -138,10 +134,10 @@ public class Main2Activity extends AppCompatActivity {
         ivMinipalyer.startAnimation(rotateAnimation);
     }
 
-    @Subscribe
+    @Subscribe(sticky = true)
     public  void onRecivedMusic (OnClickTopMusic onClickTopMusic){
         topSongModel = onClickTopMusic.getTopSongModel();
-        mini_player.setVisibility(View.VISIBLE);
+        miniplayerLayout.setVisibility(View.VISIBLE);
         tvNameSong.setText(topSongModel.getName());
         tvArtist.setText(topSongModel.getArtist());
         Picasso.with(getBaseContext()).load(topSongModel.getImage()).into(ivMinipalyer);

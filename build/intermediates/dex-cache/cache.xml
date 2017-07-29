@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/libs/guava-14.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4">
+        <dex dex="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/2/guava-14.0.1_41f4945afad57863dba2317ee7477c6d769d265f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/libs/guava-14.0.1.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +21,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d45060f09d6418cdcf8c5c7f0051b922fc40b77e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/libs/commons-lang3-3.1.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="905075e6c80f206bbe6cf1e809d2caa69f420c76">
         <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-lang3-3.1_8cf3215b3c719ed035cf0cc4a388755b82b076e9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="0e01af06c36bce21bbfc14f144b12a74596fde26">
+        <dex dex="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_adac6a5627a9221805034e75e68e54b7a326d986/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,6 +63,15 @@
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/mac-vuongvu/Documents/AndroidStudio/MusicApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a15f054123377735490ba69047aa8bcb8134a8d0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/libs/commons-lang3-3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="905075e6c80f206bbe6cf1e809d2caa69f420c76">
+        <dex dex="/Users/mac-vuongvu/Downloads/APPTK-MusicApp-master/APPTK-MusicApp-master/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-lang3-3.1_149b151fa6fa3f9016e5cf0627a2d7ab6e15babd/classes.dex" />
     </item>
 
 </items>

@@ -82,7 +82,7 @@ public class FullPlayerFM extends Fragment {
         EventBus.getDefault().register(this);
         Animation();
 
-        MusicManager.loadSearchSong(topSongModel, getContext(), seekBar, playpause);
+        MusicManager.updateTimeSeekBar(seekBar, playpause);
 
         return view;
     }
