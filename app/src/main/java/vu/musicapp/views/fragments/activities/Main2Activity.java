@@ -43,6 +43,7 @@ public class Main2Activity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
+
     private int[] tabIcons = {
             R.drawable.ic_home,
             R.drawable.ic_fav,
@@ -55,9 +56,9 @@ public class Main2Activity extends AppCompatActivity {
     private TextView tvNameSong, tvArtist;
     private SeekBar seekBar;
     private ImageView ivButtonPlay;
-    private RelativeLayout miniplayerLayout, mainContent;
+    private RelativeLayout miniplayerLayout;
 
-    
+
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
@@ -79,10 +80,9 @@ public class Main2Activity extends AppCompatActivity {
                 FullPlayerFM fullPlayerFM = new FullPlayerFM();
                 ScreenManager.OpenFragment(getSupportFragmentManager(), fullPlayerFM, R.id.main);
                 miniplayerLayout.setVisibility(View.VISIBLE);
-
-
             }
         });
+
         //
         seekBar = (SeekBar) findViewById(R.id.seekBar_mini);
         seekBar.setPadding(0,0,0,0);
@@ -105,7 +105,6 @@ public class Main2Activity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         //
         EventBus.getDefault().register(this);
-//        mini_player = (RelativeLayout) findViewById(R.id.mini_player);
         FindViewID();
         setupViewPager(mViewPager);
         setupTabIcons();

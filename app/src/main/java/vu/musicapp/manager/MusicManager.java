@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import vu.musicapp.networks.RetrofitFactory;
 import vu.musicapp.networks.searchSongJS.DocsObject;
 import vu.musicapp.networks.searchSongJS.SearchMain;
 import vu.musicapp.utils.FuzzyMatch;
+import vu.musicapp.utils.Utils;
 import vu.musicapp.views.fragments.fragments.TopSongFragment;
 
 /**
@@ -29,7 +31,7 @@ import vu.musicapp.views.fragments.fragments.TopSongFragment;
  */
 
 public class MusicManager {
-    private static HybridMediaPlayer hybridMediaPlayer;
+    public static HybridMediaPlayer hybridMediaPlayer;
     private  static  SeekBar seekBar;
     private static ImageView btnPlaypause;
     public  static  void loadSearchSong(final TopSongModel topSongModel, final Context context, SeekBar seekbar, ImageView btnPlayPause1) {
@@ -90,7 +92,7 @@ public class MusicManager {
             @Override
             public void onPrepared(HybridMediaPlayer hybridMediaPlayer) {
                 hybridMediaPlayer.play();
-                updateTimeSeekBar( seekBar, MusicManager.btnPlaypause);
+                updateTimeSeekBar( seekBar, MusicManager.btnPlaypause, null, null);
             }
         });
     }
@@ -104,7 +106,12 @@ public class MusicManager {
         }
     }
 
-    public  static  void updateTimeSeekBar(final SeekBar seekBarMini, final ImageView btnPlayPause) {
+
+
+
+    public  static  void updateTimeSeekBar(final SeekBar seekBarMini, final ImageView btnPlayPause,
+                                           final TextView tvCurrent,
+                                           final TextView tvDuration) {
         final Handler handler = new Handler();
         Runnable runable = new Runnable() {
             @Override
@@ -116,6 +123,11 @@ public class MusicManager {
                 }
                 else  {
                     btnPlayPause.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
+                }
+
+                if (tvCurrent != null && tvDuration != null) {
+                    tvDuration.setText(Utils.convertTime(hybridMediaPlayer.getDuration()));
+                    tvCurrent.setText(Utils.convertTime(hybridMediaPlayer.getCurrentPosition()));
                 }
                 handler.postDelayed(this, 100);
             }

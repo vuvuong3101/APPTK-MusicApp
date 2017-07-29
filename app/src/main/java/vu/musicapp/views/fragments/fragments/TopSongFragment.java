@@ -146,6 +146,7 @@ public class TopSongFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         TopSongModel topSongModel = (TopSongModel) view.getTag();
         MusicManager.loadSearchSong(topSongModel, getContext(), seekBar, buttonPlayPause);
+
         //
         Toast.makeText(getContext(), topSongModel.getName(), Toast.LENGTH_SHORT).show();
         EventBus.getDefault().postSticky(new OnClickTopMusic(topSongModel));

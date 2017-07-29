@@ -33,8 +33,8 @@ import vu.musicapp.views.fragments.activities.Main2Activity;
 public class FullPlayerFM extends Fragment {
     private static final String TAG = FullPlayerFM.class.toString();
     private TopSongModel topSongModel;
-    private ImageView imageMusic, imSong, playpause, close , btnPlayPause;
-    private TextView tv_nameSong, tv_single;
+    private ImageView imageMusic, imSong, playpause, close ;
+    private TextView tv_nameSong, tv_single,  tvDuration, tvCurent;
     private RelativeLayout viewMain;
     private SeekBar seekBar;
     private FloatingActionButton fab;
@@ -58,6 +58,8 @@ public class FullPlayerFM extends Fragment {
         seekBar =  view.findViewById(R.id.seekBarFull);
         playpause = view.findViewById(R.id.play_pause);
         close = view.findViewById(R.id.close);
+        tvDuration = view.findViewById(R.id.tv_durent);
+        tvCurent = view.findViewById(R.id.tv_curent);
         ///
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +84,7 @@ public class FullPlayerFM extends Fragment {
         EventBus.getDefault().register(this);
         Animation();
 
-        MusicManager.updateTimeSeekBar(seekBar, playpause);
+        MusicManager.updateTimeSeekBar(seekBar, playpause, tvCurent, tvDuration);
 
         return view;
     }
